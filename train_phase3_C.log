@@ -1,0 +1,53 @@
+Device: cuda
+Loading windows...
+  n=772,085  tickers=497  pos_rate=0.247  date range: 1990-04-02 - 2025-12-29
+
+Split: ticker (80/10/10) + time cutoff 2020-01-01
+  Tickers   train=397  val=50  test=50
+  Windows   train=511,671  val=61,136  test=14,058
+  Train period: 1990-04-02 - 2019-12-31
+  Test  period: 2020-01-06 - 2025-12-26
+  Test pos_rate: 0.244
+
+--- LR baseline ---
+  LR baseline AUC = 0.9165
+
+Building CNN datasets...
+
+--- Training ---
+  Parameters: 290,337
+C:\Users\Gebruiker\AppData\Roaming\Python\Python314\site-packages\torch\nn\modules\conv.py:380: UserWarning: Using padding='same' with even kernel lengths and odd dilation may require a zero-padded copy of the input be created (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Convolution.cpp:1091.)
+  return F.conv1d(
+ep  1 | tr_r2=0.6160  vl_r2=0.8078  vl_loss=0.00003  lr=9.97e-04  217.3s *
+ep  2 | tr_r2=0.8410  vl_r2=0.6076  vl_loss=0.00006  lr=9.89e-04  172.7s
+ep  3 | tr_r2=0.8787  vl_r2=0.8500  vl_loss=0.00002  lr=9.76e-04  142.9s *
+ep  4 | tr_r2=0.9015  vl_r2=0.8518  vl_loss=0.00002  lr=9.57e-04  181.2s *
+ep  5 | tr_r2=0.9114  vl_r2=0.8705  vl_loss=0.00002  lr=9.34e-04  185.6s *
+ep  6 | tr_r2=0.9216  vl_r2=0.8393  vl_loss=0.00003  lr=9.05e-04  184.7s
+ep  7 | tr_r2=0.9281  vl_r2=0.8703  vl_loss=0.00002  lr=8.73e-04  180.4s
+ep  8 | tr_r2=0.9342  vl_r2=0.8829  vl_loss=0.00002  lr=8.36e-04  178.3s *
+ep  9 | tr_r2=0.9388  vl_r2=0.8928  vl_loss=0.00002  lr=7.96e-04  177.1s *
+ep 10 | tr_r2=0.9429  vl_r2=0.8190  vl_loss=0.00003  lr=7.53e-04  181.5s
+ep 11 | tr_r2=0.9468  vl_r2=0.9080  vl_loss=0.00001  lr=7.06e-04  193.6s *
+ep 12 | tr_r2=0.9499  vl_r2=0.8510  vl_loss=0.00002  lr=6.58e-04  207.7s
+ep 13 | tr_r2=0.9526  vl_r2=0.9083  vl_loss=0.00001  lr=6.08e-04  213.6s *
+ep 14 | tr_r2=0.9554  vl_r2=0.9099  vl_loss=0.00001  lr=5.57e-04  246.2s *
+ep 15 | tr_r2=0.9576  vl_r2=0.8719  vl_loss=0.00002  lr=5.05e-04  248.9s
+ep 16 | tr_r2=0.9608  vl_r2=0.9019  vl_loss=0.00002  lr=4.53e-04  240.7s
+ep 17 | tr_r2=0.9616  vl_r2=0.9010  vl_loss=0.00002  lr=4.02e-04  245.0s
+ep 18 | tr_r2=0.9630  vl_r2=0.8885  vl_loss=0.00002  lr=3.52e-04  259.7s
+ep 19 | tr_r2=0.9651  vl_r2=0.9006  vl_loss=0.00002  lr=3.04e-04  255.6s
+  Early stop (best val_loss=0.00001)
+
+--- Evaluation on test set ---
+
+  LR baseline AUC  = 0.9165
+  CNN R^2          = 0.8926
+  CNN AUC @ 0.03   = 0.9871  (delta = +0.0706 vs LR)
+  CNN AP           = 0.9634
+  [stock         ]  n= 3,824  auc=0.9843
+  [ff_portfolio  ]  n=10,234  auc=0.9883
+
+Saved: models\best_model_phase3_C.pt  |  results\phase3_C/summary.md  |  figures\phase3_C/eval.png
+Done.
+[DONE]  
